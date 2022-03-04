@@ -42,7 +42,7 @@ public class Usuario {
 	@Column(name = "ds_senha", nullable = false, length = 255)
 	private String senha;
 
-	@Column(name = "im_avatar_url", nullable = false, length = 200)
+	@Column(name = "im_avatar_url", length = 200)
 	private String urlImagem;
 
 	@Column(name = "nr_telefone", nullable = false, length = 11)
@@ -71,6 +71,19 @@ public class Usuario {
 		this.numeroTelefone = numeroTelefone;
 		this.criador = criador;
 		this.eventos = eventos;
+	}
+	
+	
+
+	public Usuario(String nome, String email, Calendar dataNascimento, String senha, String urlImagem,
+			String numeroTelefone) {
+		super();
+		this.nome = nome;
+		this.email = email;
+		this.dataNascimento = dataNascimento;
+		this.senha = senha;
+		this.urlImagem = urlImagem;
+		this.numeroTelefone = numeroTelefone;
 	}
 
 	public int getId() {

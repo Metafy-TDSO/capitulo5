@@ -24,12 +24,15 @@ public class Criador {
 	private int id;
 
 	@JoinColumn(name = "id_usuario", foreignKey = @ForeignKey(name = "fk_criador_usuario"), nullable = false)
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Usuario usuario;
 
 	@OneToMany(mappedBy = "criador")
 	private List<Evento> eventos;
-
+	
+	@Column(name = "vl_avaliacao")
+	private int avaliacao;
+	
 	public Criador() {
 
 	}
@@ -39,6 +42,14 @@ public class Criador {
 		this.id = id;
 		this.usuario = usuario;
 		this.eventos = eventos;
+	}
+
+	
+	
+	public Criador(Usuario usuario, int avaliacao) {
+		super();
+		this.usuario = usuario;
+		this.avaliacao = avaliacao;
 	}
 
 	public int getId() {
@@ -63,6 +74,15 @@ public class Criador {
 
 	public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
+	}
+	
+
+	public int getAvaliacao() {
+		return avaliacao;
+	}
+
+	public void setAvaliacao(int avaliacao) {
+		this.avaliacao = avaliacao;
 	}
 
 	@Override

@@ -17,111 +17,107 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tbl_criador")
 public class Criador {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_criador")
+    private int id;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_criador")
-	private int id;
+    @JoinColumn(name = "id_usuario", foreignKey = @ForeignKey(name = "fk_criador_usuario"), nullable = false)
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Usuario usuario;
 
-	@JoinColumn(name = "id_usuario", foreignKey = @ForeignKey(name = "fk_criador_usuario"), nullable = false)
-	@OneToOne(cascade = CascadeType.PERSIST)
-	private Usuario usuario;
+    @OneToMany(mappedBy = "criador")
+    private List<Evento> eventos;
 
-	@OneToMany(mappedBy = "criador")
-	private List<Evento> eventos;
-	
-	@Column(name = "vl_avaliacao")
-	private int avaliacao;
-	
-	public Criador() {
+    @Column(name = "vl_avaliacao")
+    private int avaliacao;
 
-	}
+    public Criador() {
 
-	public Criador(int id, Usuario usuario, List<Evento> eventos) {
-		super();
-		this.id = id;
-		this.usuario = usuario;
-		this.eventos = eventos;
-	}
+    }
 
-	
-	
-	public Criador(Usuario usuario, int avaliacao) {
-		super();
-		this.usuario = usuario;
-		this.avaliacao = avaliacao;
-	}
+    public Criador(int id, Usuario usuario, List<Evento> eventos) {
+	super();
+	this.id = id;
+	this.usuario = usuario;
+	this.eventos = eventos;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public Criador(Usuario usuario, int avaliacao) {
+	super();
+	this.usuario = usuario;
+	this.avaliacao = avaliacao;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+	return id;
+    }
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
+    public void setId(int id) {
+	this.id = id;
+    }
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+    public Usuario getUsuario() {
+	return usuario;
+    }
 
-	public List<Evento> getEventos() {
-		return eventos;
-	}
+    public void setUsuario(Usuario usuario) {
+	this.usuario = usuario;
+    }
 
-	public void setEventos(List<Evento> eventos) {
-		this.eventos = eventos;
-	}
-	
+    public List<Evento> getEventos() {
+	return eventos;
+    }
 
-	public int getAvaliacao() {
-		return avaliacao;
-	}
+    public void setEventos(List<Evento> eventos) {
+	this.eventos = eventos;
+    }
 
-	public void setAvaliacao(int avaliacao) {
-		this.avaliacao = avaliacao;
-	}
+    public int getAvaliacao() {
+	return avaliacao;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((eventos == null) ? 0 : eventos.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
-		return result;
-	}
+    public void setAvaliacao(int avaliacao) {
+	this.avaliacao = avaliacao;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Criador other = (Criador) obj;
-		if (eventos == null) {
-			if (other.eventos != null)
-				return false;
-		} else if (!eventos.equals(other.eventos))
-			return false;
-		if (id != other.id)
-			return false;
-		if (usuario == null) {
-			if (other.usuario != null)
-				return false;
-		} else if (!usuario.equals(other.usuario))
-			return false;
-		return true;
-	}
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((eventos == null) ? 0 : eventos.hashCode());
+	result = prime * result + id;
+	result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
+	return result;
+    }
 
-	@Override
-	public String toString() {
-		return "Criador [id=" + id + ", usuario=" + usuario + ", eventos=" + eventos + "]";
-	}
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Criador other = (Criador) obj;
+	if (eventos == null) {
+	    if (other.eventos != null)
+		return false;
+	} else if (!eventos.equals(other.eventos))
+	    return false;
+	if (id != other.id)
+	    return false;
+	if (usuario == null) {
+	    if (other.usuario != null)
+		return false;
+	} else if (!usuario.equals(other.usuario))
+	    return false;
+	return true;
+    }
+
+    @Override
+    public String toString() {
+	return "Criador [id=" + id + ", usuario=" + usuario + ", eventos=" + eventos + "]";
+    }
 
 }

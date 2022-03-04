@@ -19,183 +19,178 @@ import org.hibernate.annotations.CreationTimestamp;
 @Entity
 @Table(name = "tbl_usuario")
 public class Usuario {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario")
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
+    private int id;
 
-	@Column(name = "ds_nome", nullable = false, length = 72)
-	private String nome;
+    @Column(name = "ds_nome", nullable = false, length = 72)
+    private String nome;
 
-	@Column(name = "ds_email", nullable = false, length = 255, unique = true)
-	private String email;
+    @Column(name = "ds_email", nullable = false, length = 255, unique = true)
+    private String email;
 
-	@Column(name = "dt_nascimento", nullable = false)
-	@Temporal(TemporalType.DATE)
-	private Calendar dataNascimento;
+    @Column(name = "dt_nascimento", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Calendar dataNascimento;
 
-	@Column(name = "dt_criacao")
-	@CreationTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dataCriacao;
+    @Column(name = "dt_criacao")
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar dataCriacao;
 
-	@Column(name = "ds_senha", nullable = false, length = 255)
-	private String senha;
+    @Column(name = "ds_senha", nullable = false, length = 255)
+    private String senha;
 
-	@Column(name = "im_avatar_url", length = 200)
-	private String urlImagem;
+    @Column(name = "im_avatar_url", length = 200)
+    private String urlImagem;
 
-	@Column(name = "nr_telefone", nullable = false, length = 11)
-	private String numeroTelefone;
-	
-	@OneToOne(mappedBy = "usuario")
-	private Criador criador;	
+    @Column(name = "nr_telefone", nullable = false, length = 11)
+    private String numeroTelefone;
 
-	@ManyToMany(mappedBy = "usuarios")
-	private List<Evento> eventos;
+    @OneToOne(mappedBy = "usuario")
+    private Criador criador;
 
-	public Usuario() {
+    @ManyToMany(mappedBy = "usuarios")
+    private List<Evento> eventos;
 
-	}
+    public Usuario() {
 
-	public Usuario(int id, String nome, String email, Calendar dataNascimento, Calendar dataCriacao, String senha,
-			String urlImagem, String numeroTelefone, Criador criador, List<Evento> eventos) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.dataNascimento = dataNascimento;
-		this.dataCriacao = dataCriacao;
-		this.senha = senha;
-		this.urlImagem = urlImagem;
-		this.numeroTelefone = numeroTelefone;
-		this.criador = criador;
-		this.eventos = eventos;
-	}
-	
-	
+    }
 
-	public Usuario(String nome, String email, Calendar dataNascimento, String senha, String urlImagem,
-			String numeroTelefone) {
-		super();
-		this.nome = nome;
-		this.email = email;
-		this.dataNascimento = dataNascimento;
-		this.senha = senha;
-		this.urlImagem = urlImagem;
-		this.numeroTelefone = numeroTelefone;
-	}
+    public Usuario(int id, String nome, String email, Calendar dataNascimento, Calendar dataCriacao, String senha,
+	    String urlImagem, String numeroTelefone, Criador criador, List<Evento> eventos) {
+	super();
+	this.id = id;
+	this.nome = nome;
+	this.email = email;
+	this.dataNascimento = dataNascimento;
+	this.dataCriacao = dataCriacao;
+	this.senha = senha;
+	this.urlImagem = urlImagem;
+	this.numeroTelefone = numeroTelefone;
+	this.criador = criador;
+	this.eventos = eventos;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public Usuario(String nome, String email, Calendar dataNascimento, String senha, String urlImagem,
+	    String numeroTelefone) {
+	super();
+	this.nome = nome;
+	this.email = email;
+	this.dataNascimento = dataNascimento;
+	this.senha = senha;
+	this.urlImagem = urlImagem;
+	this.numeroTelefone = numeroTelefone;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+	return id;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public void setId(int id) {
+	this.id = id;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+	return nome;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setNome(String nome) {
+	this.nome = nome;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+	return email;
+    }
 
-	public Calendar getDataNascimento() {
-		return dataNascimento;
-	}
+    public void setEmail(String email) {
+	this.email = email;
+    }
 
-	public void setDataNascimento(Calendar dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
+    public Calendar getDataNascimento() {
+	return dataNascimento;
+    }
 
-	public Calendar getDataCriacao() {
-		return dataCriacao;
-	}
+    public void setDataNascimento(Calendar dataNascimento) {
+	this.dataNascimento = dataNascimento;
+    }
 
-	public void setDataCriacao(Calendar dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
+    public Calendar getDataCriacao() {
+	return dataCriacao;
+    }
 
-	public String getSenha() {
-		return senha;
-	}
+    public void setDataCriacao(Calendar dataCriacao) {
+	this.dataCriacao = dataCriacao;
+    }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+    public String getSenha() {
+	return senha;
+    }
 
-	public String getUrlImagem() {
-		return urlImagem;
-	}
+    public void setSenha(String senha) {
+	this.senha = senha;
+    }
 
-	public void setUrlImagem(String urlImagem) {
-		this.urlImagem = urlImagem;
-	}
+    public String getUrlImagem() {
+	return urlImagem;
+    }
 
-	public String getNumeroTelefone() {
-		return numeroTelefone;
-	}
+    public void setUrlImagem(String urlImagem) {
+	this.urlImagem = urlImagem;
+    }
 
-	public void setNumeroTelefone(String numeroTelefone) {
-		this.numeroTelefone = numeroTelefone;
-	}
+    public String getNumeroTelefone() {
+	return numeroTelefone;
+    }
 
-	public Criador getCriador() {
-		return criador;
-	}
+    public void setNumeroTelefone(String numeroTelefone) {
+	this.numeroTelefone = numeroTelefone;
+    }
 
-	public void setCriador(Criador criador) {
-		this.criador = criador;
-	}
+    public Criador getCriador() {
+	return criador;
+    }
 
-	public List<Evento> getEventos() {
-		return eventos;
-	}
+    public void setCriador(Criador criador) {
+	this.criador = criador;
+    }
 
-	public void setEventos(List<Evento> eventos) {
-		this.eventos = eventos;
-	}
+    public List<Evento> getEventos() {
+	return eventos;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
+    public void setEventos(List<Evento> eventos) {
+	this.eventos = eventos;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + id;
+	return result;
+    }
 
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", dataNascimento=" + dataNascimento
-				+ ", dataCriacao=" + dataCriacao + ", senha=" + senha + ", urlImagem=" + urlImagem + ", numeroTelefone="
-				+ numeroTelefone + ", criador=" + criador + ", eventos=" + eventos + "]";
-	}
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Usuario other = (Usuario) obj;
+	if (id != other.id)
+	    return false;
+	return true;
+    }
 
-	
-	
+    @Override
+    public String toString() {
+	return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", dataNascimento=" + dataNascimento
+		+ ", dataCriacao=" + dataCriacao + ", senha=" + senha + ", urlImagem=" + urlImagem + ", numeroTelefone="
+		+ numeroTelefone + ", criador=" + criador + ", eventos=" + eventos + "]";
+    }
 
 }
